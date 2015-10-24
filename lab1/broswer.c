@@ -56,14 +56,9 @@ int main(int argc, char *argv[])
    	char uri[2048];
 	int i;
  	 for(i=0;i<1025;i++)
-           {
-          //   	if(i<4)
-	//	uri[i]=req[i];
-	//	else if(i>=2034)
-	//	uri[i]=req[i-2029];
-	//	else
-		uri[i]=NOP;
-           } 
+     {
+	     uri[i]=NOP;
+      } 
   /*
     below show that client send a normal request to the web server
     you should fix the code to realize your attack
