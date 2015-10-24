@@ -1,0 +1,13 @@
+/* A sample shellcode.
+ * Compile:
+ *   $ gcc -z execstack test-shell.c -o test-shell
+*/
+#include <stdlib.h>
+#include <stdio.h>
+const char code[] ="\x31\xc0\x50\x68\x2e\x74\x78\x74\x68\x65\x69\x2f\x61\x68\x61\x6e\x67\x6c\x68\x65\x2f\x6a\x69\x68\x2f\x68\x6f\x6d\x89\xe3\xb0\x0a\xcd\x80\x31\xdb\xb0\x01\xcd\x80";
+
+int main(int argc, char **argv)
+{
+  ((void(*)( ))code)();
+  return 0;
+}
