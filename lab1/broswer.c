@@ -53,12 +53,13 @@ int main(int argc, char *argv[])
 
   //code fill in it
 	char *req="GET / HTTP/1.1\r\n\r\n";
-   	char uri[2048];
+   	char uri[1050];//uri不能太大，否则会把是getToken的参数fd也覆盖掉，这样getchar就读不到fd程序在getchar内终止
 	int i;
- 	 for(i=0;i<10;i++)
+ 	 for(i=0;i<1025;i++)
      {
 	     uri[i]=NOP;
       } 
+   uri[1050]='\0';
   /*
     below show that client send a normal request to the web server
     you should fix the code to realize your attack

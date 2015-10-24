@@ -16,7 +16,6 @@ Http_t generate400();
 int i = 0;
 int n;
 char c;
-//////////////////////////////////////
 // prototypes
 void advance (int fd, int sepBySpace);
 char *eatToken (enum TokenKind_t, int, int);
@@ -60,7 +59,7 @@ char getChar (int fd)
 void getToken (int fd, int sepBySpace)
 {  
   i = 0;
-  char s[1024];
+  char s[1024];//如果传过来的数据太大回把getToken的参数 int fd也覆盖掉，这样程序就会终止。
 
   switch (ahead){
   case A_NONE:

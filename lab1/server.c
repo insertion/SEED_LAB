@@ -18,13 +18,15 @@ int main (int argc, char **argv)
 {
   int sockfd, client_sockfd;
   int host_port;
+  
   int yes;
-  char buffer[BUF_SIZE];
+  char buffer[BUF_SIZE];//socketç¼“å†²åŒºå¤§å°
+  
   struct sockaddr_in host_addr, client_addr;
 
   host_port = HOST_PORT;
   if (argc>1)
-    host_port = atoi(argv[1]);//Ö÷»ú¶Ë¿ÚÎªµÚÒ»¸ö²ÎÊý£¬Ä¬ÈÏÎª8080
+    host_port = atoi(argv[1]);
   
   if ((sockfd = socket (PF_INET, SOCK_STREAM, 0))==-1){
     DIE("creating a socket");
@@ -39,7 +41,7 @@ int main (int argc, char **argv)
   host_addr.sin_addr.s_addr = 0;
 
   if (bind(sockfd, (struct sockaddr *)&host_addr, sizeof(struct sockaddr)) == -1)
-    DIE("binding to socket");//¼ÙÈç¶Ë¿Ú±»Õ¼ÓÃ£¬´Ë´¦±¨´í
+    DIE("binding to socket");
   
   if (listen(sockfd, 100) == -1)
     DIE("listening on socket");
