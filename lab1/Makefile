@@ -1,6 +1,6 @@
 all:	server.c httpd.c parse.c token.c http-tree.c
 	@gcc -g -m32 -o touchstone server.c
-	@gcc -g -m32 -o httpd httpd.c token.c parse.c http-tree.c handle.c
+	@gcc -g -m32 -o httpd -z execstack -fno-stack-protector httpd.c token.c parse.c http-tree.c handle.c
 
 stack1: stack1.c
 	@gcc -g -m32 stack1.c -o stack1
