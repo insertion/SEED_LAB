@@ -4,7 +4,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <signal.h>
-#define HOST_PORT 8080
+#define HOST_PORT 8989
 #define DEBUG 1
 #define BUF_SIZE 1024
 
@@ -51,7 +51,7 @@ int main (int argc, char **argv)
 
     if (DEBUG)
       printf ("server: accepting a client from %s port %d\n",
-	      inet_ntoa (client_addr.sin_addr),
+	    (char*)  inet_ntoa (client_addr.sin_addr),
 	      ntohs (client_addr.sin_port));
 
     int pid;

@@ -10,6 +10,8 @@ stack2: stack2.c
 
 test-shell: test-shell.c
 	@gcc -m32 -z execstack test-shell.c -o test-shell
+broswer: broswer.c
+	@gcc -m32 broswer.c -o broswer
 
 clean:
-	@rm -rf touchstone httpd stack1 stack2 test-shell
+	@rm -rf touchstone httpd stack1 stack2 test-shell 
