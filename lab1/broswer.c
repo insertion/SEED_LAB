@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 	char *req="GET / HTTP/1.1\r\n\r\n";
    	char uri[2048];
 	int i;
- 	 for(i=0;i<1025;i++)
+ 	 for(i=0;i<10;i++)
      {
 	     uri[i]=NOP;
       } 
