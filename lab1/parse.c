@@ -61,7 +61,7 @@ void getToken (int fd, int sepBySpace)
 {
 	i = 0;
 	char s[1024];//如果传过来的数据太大回把getToken的参数 int fd也覆盖掉，这样程序就会终止。
-	//根据gdb调试得出缓冲区s地址为0xbffff9fc
+	//根据gdb调试得出缓冲区s地址为0xbffff9e8
 	switch (ahead)
 		{
 			case A_NONE:
@@ -151,6 +151,7 @@ void getToken (int fd, int sepBySpace)
 						break;
 					}
 					default:
+                                            if(i>=1024)return;
 						s[i++] = c;
 						break;
 				}
