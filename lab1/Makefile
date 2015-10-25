@@ -1,7 +1,7 @@
-all:	server.c httpd.c parse.c token.c http-tree.c
+all:	server.c httpd.c parse.c token.c http-tree.c broswer.c
 	@gcc -g -m32 -o touchstone -z execstack -fno-stack-protector server.c
 	@gcc -g -m32 -o httpd -z execstack -fno-stack-protector httpd.c token.c parse.c http-tree.c handle.c
-	@gcc -g -m32 -0 broswer broswer.c
+	@gcc -g -m32 -o broswer broswer.c
 stack1: stack1.c
 	@gcc -g -m32 stack1.c -o stack1
 
