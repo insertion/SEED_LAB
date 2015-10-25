@@ -1,3 +1,13 @@
+
+/**
+ *  运行touchstone时要关闭内存地址随机化，
+ *  且touchstone编译时要加上-z execstack -fn-stack-protector
+*/
+
+
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
