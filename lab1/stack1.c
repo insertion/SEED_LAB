@@ -16,7 +16,7 @@ int func(char *str)
    * the array "buffer".
    * Your code here:
    */
-
+printf("0x%x\n",&buffer);
   strcpy(buffer, str);
   
   return 1;
