@@ -151,7 +151,7 @@ void getToken (int fd, int sepBySpace)
 						break;
 					}
 					default:
-                        if(i>=1024)return;
+                      //  if(i>=1024)return;
 						s[i++] = c;
 						break;
 				}
