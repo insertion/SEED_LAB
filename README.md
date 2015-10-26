@@ -43,6 +43,8 @@ ret=(int)buffer+144;
 
 > 在parse.c 154行添加了如下代码
 
-```if(i>=1024) return;```
+```c
+if(i>=1024) return;
+```
  
 
