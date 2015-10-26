@@ -41,6 +41,8 @@ ret=(int)buffer+144;
 ```
 #####exercise
 
-> 在parse.c 154行添加了如下代码`if(i>=1024) return;`
+> 在parse.c 154行添加了如下代码
+
+```if(i>=1024) return;```
  
 
