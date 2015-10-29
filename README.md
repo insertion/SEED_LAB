@@ -1,7 +1,7 @@
 #中科大软件学院信息安全实验
 
  参考文献
- * [栈与函数调用惯例](http://blog.csdn.net/xiaogugood/article/details/38490663)        -----------------------------------*加深对缓冲区溢出的理解*
+ * [栈与函数调用惯例](http://blog.csdn.net/xiaogugood/article/details/38490663)        ---------------------------*加深对缓冲区溢出的理解*
  * [x86下的C函数调用惯例](http://blog.csdn.net/phunxm/article/details/8985321)
 
 ##lab1:缓冲区溢出
