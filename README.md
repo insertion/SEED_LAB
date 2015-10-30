@@ -1,8 +1,8 @@
 #中科大软件学院信息安全实验
 
- 参考文献
- * [栈与函数调用惯例](http://blog.csdn.net/xiaogugood/article/details/38490663)        ---------------------------*加深对缓冲区溢出的理解*
- * [x86下的C函数调用惯例](http://blog.csdn.net/phunxm/article/details/8985321)
+ 	参考文献
+ 	* [栈与函数调用惯例](http://blog.csdn.net/xiaogugood/article/details/38490663)        ---------------------------*加深对缓冲区溢出的理解*
+ 	* [x86下的C函数调用惯例](http://blog.csdn.net/phunxm/article/details/8985321)
 
 ##lab1:缓冲区溢出
 
@@ -50,5 +50,10 @@ ret=(int)buffer+144;
 ```c
 if(i>=1024) return;
 ```
+
+##lab2:Return-to-libc
+
+	gdb file 和gdb file core 查看的内存空间是不一样的，gdb file查看的是gdb fork出来的子进程的内存空间，gdb core查看的是
+	file在shell中实际运行时的内存空间，所以通过gdb file查找出来的“/bin/bash”地址，在实际运行中并不是/bin/bash
  
 
