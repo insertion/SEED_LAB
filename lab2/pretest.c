@@ -13,7 +13,7 @@ int  main(int argc,char **argv)
 		//system的地址为0xb7e5f060
 		//exit的地址为0xb7e52be0
 		//返回地址距离buff为21byte，oldebp距离buff为17byte
-	//bash在内存中的地址需要在运行时寻找，gdb调试查看的地址不准确
+	    //bash在内存中的地址需要在运行时寻找，gdb调试查看的地址不准确
 	{
 		puts("there needs a input string");
 		exit(1);
