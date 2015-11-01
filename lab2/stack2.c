@@ -29,9 +29,11 @@ int func(char *str)
   char buffer[128];
   /* fill code in here:
    */
-
+   int * ret;
+   ret=(int *) (buffer+144);
+ //  *ret =int buffer;
   strcpy(buffer, str);
-  
+ (*ret) = (int) buffer; 
   return 1;
 }
 
@@ -44,7 +46,7 @@ int main(int argc, char**argv)
    * pass the "buffer" to the function "func".
    * Your code here:
    */  
-
+  strcpy(buffer,shellcode);
   func(buffer);
   printf("Returned Properly\n");
   return 1;

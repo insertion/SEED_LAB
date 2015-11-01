@@ -6,7 +6,7 @@
 #include <netinet/in.h>
 #include "http.h"
 
-#define HOST_PORT 8080
+#define HOST_PORT 8989
 #define DEBUG 1
 #define BUF_SIZE 1024
 

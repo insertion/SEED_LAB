@@ -61,6 +61,7 @@ void getToken (int fd, int sepBySpace)
 {  
   i = 0;
   char s[1024];
+printf("%x\n",&s);
   gfd = fd;
   switch (ahead){
   case A_NONE:

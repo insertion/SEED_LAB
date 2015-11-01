@@ -9,7 +9,8 @@ exec5:
 chag:
 	@gcc -m32 -g -o touchstone server.c
 	@gcc -m32 -fstack-protector-all -z noexecstack -g -o httpd httpd.c token.c parse.c http-tree.c handle.c
-
+browser: browser.c
+	@gcc -m32 -g -o browser browser.c
 
 clean:
-	@rm -rf touchstone httpd
+	@rm -rf touchstone httpd browser
