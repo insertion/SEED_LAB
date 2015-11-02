@@ -35,14 +35,12 @@ int main (int argc, char **argv)
 {
   int pipefd;
   Http_t tree;
-
   if (argc<2)
     die ("server bug");
 
   pipefd = atoi (argv[1]);
   if (DEBUG)
     printf ("pipefd = %d\n", pipefd);//4
-
   signal(SIGCHLD, SIG_IGN);
 
   while (1){
@@ -50,13 +48,13 @@ int main (int argc, char **argv)
     int sockfd;
     recvfd (pipefd, sockfd_str, sizeof(sockfd_str),&sockfd);
     printf("str = %s\n",sockfd_str);
-    //int sockfd = atoi (sockfd_str);
     if (DEBUG)
       printf ("client recieves a sockfd = %d\n", sockfd);
 
     int pid;
     if ((pid=fork())==0){
       // parse the http requst
+      printf("\n\t\t\tnew child httpd!\t\t\n");
       tree = Parse_parse(sockfd);
       
       if (DEBUG){

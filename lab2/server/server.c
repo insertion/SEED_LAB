@@ -80,10 +80,6 @@ int main (int argc, char **argv)
 
     printf("Parent process client_sockfd = %d\n",client_sockfd);	
 
-    if (DEBUG)
-      printf ("server: accepting a client from %s port %d\n"
-	      , inet_ntoa (client_addr.sin_addr)
-	      , ntohs (client_addr.sin_port));
 
     char sock_fd_str[32] = {'\0'};
     sprintf (sock_fd_str, "%d", client_sockfd);
