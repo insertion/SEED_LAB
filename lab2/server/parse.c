@@ -61,7 +61,7 @@ void getToken (int fd, int sepBySpace)
 {  
   i = 0;
   char s[1024];
-   //printf("%x\n",&s); // for  debug
+  // printf("s[]的地址为：%x\n",&s); // for  debug
   gfd = fd;
   switch (ahead){
   case A_NONE:

