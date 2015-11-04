@@ -1,5 +1,9 @@
 #中科大软件学院信息安全实验
 
+
+![](http://img-storage.qiniudn.com/15-11-4/11547534.jpg)
+
+
 参考文献
 * [栈与函数调用惯例](http://blog.csdn.net/xiaogugood/article/details/38490663)  
 * [Blind Return Oriented Programming  Attack](http://drops.wooyun.org/tips/3071)
