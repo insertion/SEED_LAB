@@ -55,7 +55,7 @@ if(i>=1024) return;
 
 ##lab2:Return-to-libc
 
-**在开启ASLR和栈不可执行的情况下暴力破解的时间复杂度为n^3**
+**libc.so中函数的相对偏移地址是固定的，对system穷举，就可以顺带知道exit，参数“/bin/sh”的地址**
 
 > gdb file 和gdb file core 查看的内存空间是不一样的，gdb file查看的是gdb fork出来的子进程的内存空间，
 > gdb core查看的是file在shell中实际运行时的内存空间
