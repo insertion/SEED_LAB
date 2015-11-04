@@ -6,7 +6,9 @@
 ![图一](http://img-storage.qiniudn.com/15-11-4/81520266.jpg)
 
   通过往ret中填入库函数system的地址，并在其上方填入参数‘ls’的地址，这样在fun返回后就通过system执行ls。其崩溃的原因是在system结束后，不知返回到哪。经过修改，在system的ret处填入exit的地址，程序可以正常退出。
-* **练习3**: 通过return-to-libc攻击./touchstone         结果如图二所示![](http://img-storage.qiniudn.com/15-11-4/92775404.jpg)
+* **练习3**: 通过return-to-libc攻击./touchstone   
+
+ 结果如图二所示![](http://img-storage.qiniudn.com/15-11-4/92775404.jpg)
  
  成功通过system产生一个bash。
 * **练习4**: 开启ASLR后，不能正常攻击，因为libc库和栈的地址都被随机化了，我们不能预先直到其内存地址
