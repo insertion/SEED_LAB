@@ -1,5 +1,6 @@
 #中科大软件学院信息安全实验
 
+## lab2已经完成！
 
 ![](http://img-storage.qiniudn.com/15-11-4/79440814.jpg)
 
