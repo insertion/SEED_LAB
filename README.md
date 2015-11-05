@@ -1,6 +1,6 @@
 #中科大软件学院信息安全实验
 
-## [lab2](https://github.com/insertion/SEED_LAB/blob/master/lab2/hand_in.md#lab2%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A)已经完成！
+## [lab2](https://github.com/insertion/SEED_LAB/blob/master/lab2/hand_in.md#lab2%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A) OVER！
 
 ![](http://img-storage.qiniudn.com/15-11-4/79440814.jpg)
 
