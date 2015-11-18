@@ -9,10 +9,11 @@
 * [栈与函数调用惯例](http://blog.csdn.net/xiaogugood/article/details/38490663)  
 * [Blind Return Oriented Programming  Attack](http://drops.wooyun.org/tips/3071)
 * [一步步学习ROP](http://drops.wooyun.org/tips/6597)
+* [linux 下动态链接](http://jzhihui.iteye.com/blog/1447570)
 
 ##lab1:缓冲区溢出
 
- 关于socket编程的理解是难点
+ 关于socket和HTTP协议
 
 ##lab2:Return-to-libc
 
