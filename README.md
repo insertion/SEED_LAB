@@ -23,4 +23,7 @@
 > gdb core查看的是file在shell中实际运行时的内存空间
 > 所以通过gdb file找出来的“/bin/bash”地址，在实际运行中并不是/bin/bash
  
+## lab3: 权限分离
+
+nothing to say
 
