@@ -6,6 +6,7 @@ int main(int argc,char **argv)
 	char array[10];
 	pointer = array;
 	strcpy(pointer,argv[1]);
+//溢出array，使pointer指向got
 	printf("array contains %s at %p\n",pointer,&pointer);
 
     /*通过修改printf@got来执行system函数
